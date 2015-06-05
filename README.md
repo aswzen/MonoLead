@@ -1,8 +1,13 @@
-#PIP
+#MonoLead
 
-PIP is a tiny application framework built for people who use a LAMP stack. PIP aims to be as simple as possible to set up and use.
+MonoLead is a light web based project management system. MonoLead aims to be as simple as possible to set up and use.
 
-Visit [http://gilbitron.github.com/PIP](http://gilbitron.github.com/PIP/) for more information and documentation.
+## Build with
+
+* Modified PIP - PHP Framework
+* NotORM - Database ORM Framework [http://www.notorm.com/](NotORM Documentation)
+* jQuery 
+* w2ui - JavascriptUI Framework [http://w2ui.com/](w2ui Documentation)
 
 ## Requirements
 
@@ -12,16 +17,15 @@ Visit [http://gilbitron.github.com/PIP](http://gilbitron.github.com/PIP/) for mo
 
 ## Installation
 
-* Download PIP and extract
-* Navigate to `application/config/config.php` and fill in your `base_url`
-* You are ready to rock! Point your browser to your `base_url` and hopefully see a welcome message.
+* Download MonoLead and extract
+* Navigate to `http://localhost/monolead/install` and follow the instruction
+* MonoLead ready to use.
 
 ## Documentation
 
-Visit [http://gilbitron.github.com/PIP](http://gilbitron.github.com/PIP/) to see the documentation.
+Visit [asw.web.id](August's Website) to see the documentation.
 
 ## License
 
-PIP is released under the MIT license.
+MonoLead is released under the GPL license.
 
-Want to say thanks? [Consider tipping me](https://www.gittip.com/gilbitron).
