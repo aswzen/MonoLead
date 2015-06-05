@@ -5,9 +5,9 @@ MonoLead is a light web based project management system. MonoLead aims to be as 
 ## Build with
 
 * Modified PIP - PHP Framework
-* NotORM - Database ORM Framework [http://www.notorm.com/](NotORM Documentation)
+* NotORM - Database ORM Framework [NotORM Documentation](http://www.notorm.com/)
 * jQuery 
-* w2ui - JavascriptUI Framework [http://w2ui.com/](w2ui Documentation)
+* w2ui - JavascriptUI Framework [w2ui Documentation](http://w2ui.com/)
 
 ## Requirements
 
@@ -23,7 +23,7 @@ MonoLead is a light web based project management system. MonoLead aims to be as 
 
 ## Documentation
 
-Visit [asw.web.id](August's Website) to see the documentation.
+Visit [August's Website](asw.web.id) to see the documentation.
 
 ## License
 
