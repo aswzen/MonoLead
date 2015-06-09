@@ -1,6 +1,6 @@
 #MonoLead
 
-![alt tag](https://raw.github.com/aswzen/MonoLead/sc.jpg)
+![alt tag](https://raw.githubusercontent.com/aswzen/MonoLead/master/sc.jpg)
 
 MonoLead is a light web based project management system. MonoLead aims to be as simple as possible to set up and use.
 
