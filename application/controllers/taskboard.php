@@ -57,9 +57,26 @@ class Taskboard extends Controller {
     function showall()
     {
         $template = $this->loadView('taskboard_showall');
+
     	$_PROJECT = $this->loadModel('ProjectModel');
+    	$_TASK = $this->loadModel('TaskModel');
+
         $_PROJECT_DATA = $_PROJECT->getAllProjectsByUser(Handler::$_LOGIN_USER_ID);
-        $template->set('_PROJECT_DATA', $_PROJECT_DATA);
+        $dataProject = array();
+        $dataTask = array();
+        $index = 0;
+        foreach ($_PROJECT_DATA as $key2 => $value2) {
+        	$dataTask[$index] = array();
+	        $_TASK_DATA = $_TASK->getTaskByProjectAndUser($value2['id'],Handler::$_LOGIN_USER_ID);
+    		foreach ($_TASK_DATA as $key3 => $value3) {
+		       	array_push($dataTask[$index], $value3);
+    		}
+        	array_push($dataProject, $value2);
+        	$index++;
+        }
+
+        $template->set('_PROJECT_DATA', $dataProject);
+        $template->set('_TASK_DATA', $dataTask);
         $template->render();
     }
 

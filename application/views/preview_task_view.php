@@ -4,7 +4,7 @@
 		<div id="layouts" style="width: 100%; height: 100%;"></div>
 		<div id="task_head" style="display:none">
 			<div class="icon-stask" style="width:20px;height:20px;float:left"></div>
-			<div style="width:500px;float:left;font-size:18px;padding-left:5px">
+			<div style="width:auto;float:left;font-size:18px;padding-left:5px">
 				<span class="ticket-lbl"><b>#<?php echo $_TASK_DATA['id']; ?></b></span> - <b><?php echo $_TASK_DATA['name']; ?></b>
 			</div>
 			<div class="<?php echo $_TASK_DATA->status['icon']; ?>" style="width:20px;height:20px;float:right"></div>

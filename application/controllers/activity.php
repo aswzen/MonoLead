@@ -21,7 +21,8 @@ class Activity extends Controller {
      	$arrayTaskHeader = array(
             "id" => $task_id,
             "status_id" => $_POST['record']['status_id']['id'],
-            "progress" => $_POST['record']['progress']
+            "progress" => $_POST['record']['progress'],
+            "update_date" => date('Y-m-d H:i:s')
         );
         $_TASK->updateTask($arrayTaskHeader);
         
@@ -68,7 +69,8 @@ class Activity extends Controller {
                 $arrayTaskHeader = array(
                     "id" => $_ACT_DATA_ONE['task_id'],
                     "status_id" => $_POST['record']['status_id']['id'],
-                    "progress" => $_POST['record']['progress']
+                    "progress" => $_POST['record']['progress'],
+                    "update_date" => date('Y-m-d H:i:s')
                 );
                 $_TASK->updateTask($arrayTaskHeader);
             }
@@ -96,7 +98,8 @@ class Activity extends Controller {
                     $arrayTaskHeader = array(
                         "id" => $_ACT_DATA_ONE['task_id'],
                         "status_id" => $value2['status_id'],
-                        "progress" => $value2['progress']
+                        "progress" => $value2['progress'],
+                        "update_date" => date('Y-m-d H:i:s')
                     );
                     $_TASK->updateTask($arrayTaskHeader);
                 }

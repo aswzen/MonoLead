@@ -115,6 +115,13 @@ h2{
 .label-danger {
     background-color: #D9534F;
 }
+.priority-lbl {
+  float:left;
+  width:15px;
+  height:15px;
+  margin:2px;
+  border:1px solid gray;
+}
 .ticket-lbl {
   font-family: Arial,Helvetica,sans-serif;
   background-color: #fff;
@@ -125,7 +132,11 @@ h2{
   margin-left: 3px;
   position: relative;
   border-radius: 0;
-  padding: 2px 4px;
+  padding: 2px 4px;  
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .25);
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .25);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .25);
+  cursor: pointer;
 }
 .ticket-lbl:before {
   content: " ";
@@ -188,6 +199,9 @@ h2{
   padding: 5px;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
+  -webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+  -moz-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
 }
 .dialog-content-desc{
   background-color: white;
@@ -199,11 +213,15 @@ h2{
 }
 .dialog-content-task{
   margin: 5px 0px 5px 10px;
-  border: 1px solid #C0C0C0 !important;
+  border: 1px solid #C0C0C0;
   overflow: hidden;
   font-size: 13px;
   text-align: left;
   padding: 5px;
+  border-radius: 3px;
+/*  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, .25);
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, .25);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .25);*/
 }
 button.btn-ml {
   display: inline-block;

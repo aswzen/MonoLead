@@ -46,8 +46,8 @@ class User extends Controller {
         $collectorChecker = array();
         $resultProject = array();
         foreach ($_TASKER_RS as $key => $value) {
-            if(!in_array($value['task_id'], $collectorChecker)){
-                array_push($collectorChecker, $value['task_id']);
+            if(!in_array($value->task['project_id'], $collectorChecker)){
+                array_push($collectorChecker, $value->task['project_id']);
                 array_push($resultProject, array(
                     'id' => $value['id'], 
                     'task_name' => $value->task['name'],

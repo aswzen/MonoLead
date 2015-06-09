@@ -32,7 +32,7 @@
         }
 
         var pstyle = 'border: 1px solid #dfdfdf; padding: 5px;overflow:hidden';
-	    var pstyle2 = 'overflow:auto';
+	    var pstyle2 = 'overflow:hidden;';
 	    $('#layout').w2layout({
 	        name: 'layout',
 	        panels: [
