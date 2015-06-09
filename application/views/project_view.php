@@ -63,6 +63,7 @@
 	            { field: 'id', caption: 'ID', size: '50px', resizable: true, sortable:true},
 	            { field: 'name', caption: 'Name', size: '300px', resizable: true,sortable:true },
 	            { field: 'description', caption: 'Description', size: '30%', resizable: true,sortable:true },
+	            { field: 'total_task',style:'text-align:center', caption: 'Tasks', size: '50px', resizable: true} ,
 	            { field: 'status_name', caption: 'Status', size: '100px', resizable: true,sortable:true ,
 	                render: function (record, index, column_index) {
 	                    var html = '<div style=";float:left;width:17px;height:17px;margin:0px 2px 0px 2px;line-height:20px" class="'+record.status_icon+'"></div>'+ record.status_name;

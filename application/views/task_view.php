@@ -77,17 +77,27 @@
 	                	if(record.priority == 'High'){
 	                		color = 'background-color:red';
 	                	} else if(record.priority == 'Medium'){
-	                		color = 'background-color:orange';
-	                	} else if(record.priority == 'Low') {
 	                		color = 'background-color:yellow';
+	                	} else if(record.priority == 'Low') {
+	                		color = 'background-color:LawnGreen';
 	                	} else {
 	                		color = '';
 	                	}
-	                    var html = '<div style="'+color+';float:left;width:10px;height:10px;margin:2px"></div>'+ record.priority;
+	                    var html = '<div style="'+color+';float:left;width:10px;height:10px;margin:2px;border:1px solid gray"></div>'+ record.priority;
 	                    return html;
 	                }
                 },
-	            { field: 'name', caption: 'Name', size: '300px', resizable: true,sortable:true },
+	            { field: 'name', caption: 'Name', size: '400px', resizable: true,sortable:true,
+	                render: function (record, index, column_index) {
+	                	if(record.last_comment != ''){
+		                    var html = record.name+'<div class="icon-comment" style="width:auto;height:15px;float:right;padding-left:20px"></div><sup style="float:right">'+ record.last_comment+'</sup>';
+	                	} else {
+		                    var html = record.name;
+	                	}
+	                    return html;
+	                }
+	            },
+	            { field: 'total_comment',style:'text-align:center', caption: '<div class="icon-comment" style="width:15px;height:15px;"></div>', size: '25px', resizable: true},
 	            { field: 'project_name', caption: 'Project Name', size: '250px', resizable: true,sortable:true },
 	            { field: 'status_name', caption: 'Status', size: '80px', resizable: true,sortable:true ,
 	                render: function (record, index, column_index) {

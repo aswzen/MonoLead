@@ -42,7 +42,7 @@ class ActivityModel extends Model {
         $result = $this->notorm()->activity()->where( array("task_id" => $task_id) )->order("input_date DESC")->limit(1) ;
         return $result;
     }
-    
+
 }
 
 ?>

@@ -60,6 +60,24 @@ class TaskModel extends Model {
         $result = $this->notorm()->task[$array['id']];
         $result->update($array);
     }
+
+    public function getTaskByProject($project_id = null)
+    {
+        $result = $this->notorm()->task()->where( array("project_id" => $project_id) ) ;
+        return $result;
+    }
+
+    public function getTaskByProjectAndUser($project_id = null, $user_id = null)
+    {
+        $result2 = $this->notorm()->tasker()->where( array("user_id" => $user_id) ) ;
+        $listTaskId = array();
+        foreach ($result2 as $key => $value) {
+            array_push($listTaskId, $value['task_id']);
+        }
+        $result = $this->notorm()->task()->where( array("project_id" => $project_id, "id" => $listTaskId) ) ;
+        
+        return $result;
+    }
 }
 
 ?>

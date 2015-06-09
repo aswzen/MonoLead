@@ -130,8 +130,10 @@ class Task extends Controller {
 
     function get_task_list()
     {
+        $_ACT = $this->loadModel('ActivityModel');
         $_TASK = $this->loadModel('TaskModel');
         $_TASKER = $this->loadModel('TaskerModel');
+
         $_DATA = $_TASK->getAllTasks($_POST);
 
         $result['status'] = 'success';
@@ -140,10 +142,18 @@ class Task extends Controller {
         foreach ($_DATA as $key => $value) {
 
             $_DATA_TASKER = $_TASKER->getTaskUser($value['id']);
+            
+            $_DATA_ACT_TOTAL = $_ACT->getActivityByTask($value['id']);
+            $_DATA_ACT_LAST = $_ACT->getLastActivityByTask($value['id']);
 
             $userList = array();
             foreach ($_DATA_TASKER as $keyTkr => $valueTkr) {
                 array_push($userList, $valueTkr->user['nickname']);
+            }
+
+            $userLast = '';
+            foreach ($_DATA_ACT_LAST as $keyTkr2 => $valueTkr2) {
+                $userLast = $valueTkr2->user['nickname'];
             }
 
             array_push($result['records'], array(
@@ -158,7 +168,9 @@ class Task extends Controller {
                 'description' => substr($value['description'],0,100),
                 'start_date' => date(Handler::$_DF,strtotime($value['start_date'])),
                 'end_date' => date(Handler::$_DF,strtotime($value['end_date'])),
-                'assigned_to' => implode(', ', $userList)
+                'assigned_to' => implode(', ', $userList),
+                'last_comment' => $userLast,
+                'total_comment' => count($_DATA_ACT_TOTAL)
             ));
         }
         echo json_encode($result);

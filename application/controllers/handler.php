@@ -25,13 +25,14 @@ class Handler extends Controller {
 
     	self::$_CONTROLLER_NAME = ucfirst($this->getController());
     	self::$_ACTION_NAME = ucfirst($this->getAction());
+        $ls = Session::r('LOGIN_STATUS');
 
 		if($this->getController() == 'login' || $this->getAction() == 'login'){
-			if(!empty(Session::r('LOGIN_STATUS'))){
+			if(!empty($ls)){
 	        	$this->redirect('main/');
 	        }
 		} else {
-	        if(!empty(Session::r('LOGIN_STATUS'))){
+	        if(!empty($ls)){
 	        	self::$_LOGIN_STATUS = 1;
 	        	self::$_LOGIN_USER_NAME = Session::r('USER_NAME');
 	        	self::$_LOGIN_USER_ID = Session::r('USER_ID');

@@ -31,12 +31,13 @@
             }
         }
 
-	    var pstyle = 'border: 1px solid #dfdfdf; padding: 5px;overflow:hidden';
+        var pstyle = 'border: 1px solid #dfdfdf; padding: 5px;overflow:hidden';
+	    var pstyle2 = 'overflow:auto';
 	    $('#layout').w2layout({
 	        name: 'layout',
 	        panels: [
 	            { type: 'top', size: 40, style: pstyle, content: $('#header').html() },
-	            { type: 'main',style: pstyle, content: $('#content').html(),toolbar:tools  },
+	            { type: 'main',style: pstyle2, content: $('#content').html(),toolbar:tools  },
 	            { type: 'bottom', size: 25, style: pstyle, content: $('#footer').html()  }
 	        ]
 	    });

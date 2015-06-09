@@ -25,18 +25,28 @@ class Project extends Controller {
     function get_project_list()
     {
         $_PROJECT = $this->loadModel('ProjectModel');
+        $_TASK = $this->loadModel('TaskModel');
         $_DATA = $_PROJECT->getAllProjects($_POST);
 
         $result['status'] = 'success';
         $result['total'] = count($_DATA);
         $result['records'] = array();
         foreach ($_DATA as $key => $value) {
+
+            $_TASK_DATA = $_TASK->getTaskByProject($value['id']);
+
+            $taskList = array();
+            foreach ($_TASK_DATA as $keyTkr => $valueTkr) {
+                array_push($taskList, $valueTkr['name']);
+            }
+
             array_push($result['records'], array(
                 'id' => $value['id'], 
                 'name' => $value['name'], 
                 'status_id' => $value['status_id'],
                 'status_name' => $value->status['name'],
                 'status_icon' => $value->status['icon'],
+                'total_task' => count($taskList),
                 'description' => $value['description']
             ));
         }
