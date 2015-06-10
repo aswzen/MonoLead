@@ -13,8 +13,14 @@
 						<div style="float:right"><?php echo $value->status['name']; ?></div>
 					</div>
 					<div class="dialog-content">
+						<div style="padding: 3px 0px;font-size:10px">
+							Description:
+						</div>
 						<div class="dialog-content-desc">
 							<?php echo $value['description'];?>
+						</div>
+						<div style="padding: 3px 0px;font-size:10px">
+							Tasks:
 						</div>
 						<?php 
 						$pr['High'] = 'red';
@@ -31,7 +37,13 @@
 								</div>	
 								<div style="float:right;margin-right:10px;">
 									<b>Due Date</b><br>
-									<span class="label label-primary">
+									<?php 
+										if( date(Handler::$_DF,strtotime($value2['end_date'])) <= date(Handler::$_DF)){
+											echo '<span class="label label-danger">';
+										} else {
+											echo '<span class="label label-primary">';
+										}
+									?>
 										<?php echo date(Handler::$_DF,strtotime($value2['end_date'])); ?>
 									</span>
 								</div>	

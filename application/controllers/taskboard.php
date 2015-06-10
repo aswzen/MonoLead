@@ -81,8 +81,21 @@ class Taskboard extends Controller {
     }
 
     function project($project_id = null)
-    {
-    	die($project_id);
+    { 
+        $template = $this->loadView('preview_project');
+
+        $_STATUS = $this->loadModel('StatusModel');
+        $_PROJECT = $this->loadModel('ProjectModel');
+        $_TASK = $this->loadModel('TaskModel');
+
+        $_STATUS_DATA = $_STATUS->getAllStatuses();
+        $_PROJECT_DATA = $_PROJECT->getProject($project_id);
+        $_TASK_DATA = $_TASK->getTaskByProjectAndUser($project_id,Handler::$_LOGIN_USER_ID);
+
+        $template->set('_STATUS_DATA', $_STATUS_DATA);
+        $template->set('_PROJECT_DATA', $_PROJECT_DATA);
+        $template->set('_TASK_DATA', $_TASK_DATA);
+        $template->render();
     }
 
     function task($task_id = null)

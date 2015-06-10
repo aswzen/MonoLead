@@ -74,7 +74,7 @@ class TaskModel extends Model {
         foreach ($result2 as $key => $value) {
             array_push($listTaskId, $value['task_id']);
         }
-        $result = $this->notorm()->task()->where( array("project_id" => $project_id, "id" => $listTaskId) ) ;
+        $result = $this->notorm()->task()->where( array("project_id" => $project_id, "id" => $listTaskId) )->order("priority ASC") ;
         
         return $result;
     }

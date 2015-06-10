@@ -70,6 +70,13 @@ a{
 .activity-td:hover{
   background-color: #FFF4D9;
 }
+.td-view-project:hover{
+  background-color: #E6EDF7;
+}
+.td-view-project{
+  vertical-align: top;
+  max-width: 100px;
+}
 h2{
 	font-size:14px;
 	font-family: Verdana;
@@ -121,6 +128,7 @@ h2{
   height:15px;
   margin:2px;
   border:1px solid gray;
+  cursor: help;
 }
 .ticket-lbl {
   font-family: Arial,Helvetica,sans-serif;
@@ -150,6 +158,16 @@ h2{
   position: absolute;
   left: -3px;
   top: 2px;
+}
+.ticket-lbl-sml {
+  font-family: Arial,Helvetica,sans-serif;
+  color: #666;
+  border-bottom:1px solid #C0C0C0; 
+  padding: 7px 2px 2px 2px;
+  cursor: pointer;
+}
+.ticket-lbl-sml:hover {
+  color: black;
 }
 .progress-box{
 	height: 10px;
@@ -189,6 +207,27 @@ h2{
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
 }
+.task-header{
+  background-color: white;
+  border: 1px solid #C0C0C0 !important;
+  font-size: 13px;
+  text-align: left;
+  margin: 5px;
+    box-shadow:0 3px 8px rgba(50, 50, 50, 0.17);
+}
+.task-content{
+  text-align: left;
+  padding: 5px 5px 5px 5px;
+  overflow: hidden;
+  font-family: Arial;
+}
+.task-header-priority{
+  height:5px;
+  width:100%;
+  border-bottom:1px solid #C0C0C0;
+  background-color:red;
+  float:left
+}
 .dialog-content{
   border-left: 1px solid #C0C0C0 !important;
   border-right: 1px solid #C0C0C0 !important;
@@ -219,6 +258,7 @@ h2{
   text-align: left;
   padding: 5px;
   border-radius: 3px;
+  background-color: white;
 /*  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, .25);
   -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, .25);
   box-shadow: 0 1px 4px rgba(0, 0, 0, .25);*/
