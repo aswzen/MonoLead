@@ -9,7 +9,6 @@ class Taskboard extends Controller {
      	$_PROJECT = $this->loadModel('ProjectModel');
      	$_TASK = $this->loadModel('TaskModel');
 
-        // $_PROJECT_DATA = $_PROJECT->getAllProjects();
        	$_PROJECT_DATA = $_PROJECT->getAllProjectsByUser(Handler::$_LOGIN_USER_ID);
 
         $result = array();
@@ -19,6 +18,7 @@ class Taskboard extends Controller {
             'text' => 'All Project',  
             'img' => 'icon-box',
             'selected' => true,
+            'type' => 'allproject',
             'link' => '/showall'
         );
 
@@ -33,6 +33,7 @@ class Taskboard extends Controller {
 	                'text' => $value2['name'], 
 	                'id' => $value2['id'],
 	                'img' => 'icon-task',
+                    'type' => 'task',
             		'link' => '/task/'.$value2['id']
 	            ));
 	        }
@@ -45,6 +46,7 @@ class Taskboard extends Controller {
                 'img' => 'icon-box',
                 'expanded' => true,
                 'group' => false,
+                'type' => 'project',
         		'link' => '/project/'.$value['id']
             );
             $index++;
@@ -100,7 +102,38 @@ class Taskboard extends Controller {
 
     function task($task_id = null)
     {
-    	die($task_id);
+        if($task_id == null){
+            die('Missing parameter');
+        }
+       
+        $template = $this->loadView('preview_task_view');
+
+        $_ACT = $this->loadModel('ActivityModel');
+        $_ACT_DATA = $_ACT->getActivityByTask($task_id);
+
+        $_TASK = $this->loadModel('TaskModel');
+        $_TASK_DATA = $_TASK->getTask($task_id);
+
+        $_TASKER = $this->loadModel('TaskerModel');
+        $_TASKER_DATA = $_TASKER->getTaskUser($_TASK_DATA['id']);
+
+        $_STATUS = $this->loadModel('StatusModel');
+        $_STATUS_DATA = $_STATUS->getAllStatuses();
+        $resultStatus = array();
+        foreach ($_STATUS_DATA as $key => $value) {
+            array_push($resultStatus, array(
+                'text' => $value['name'], 
+                'id' => $value['id'],
+                'icon' => $value['icon']
+            ));
+        }
+
+        $template->set('_STATUS_DATA',json_encode($resultStatus));
+        $template->set('_TASKER_DATA',$_TASKER_DATA);
+        $template->set('_TASK_DATA',$_TASK_DATA);
+        $template->set('_ACT_DATA',$_ACT_DATA);
+        $template->set('_AJAX',true);
+        $template->render();
     }
 }
 

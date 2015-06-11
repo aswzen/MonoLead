@@ -1,142 +1,148 @@
-<?php include('header.php'); ?>
-	
-    <div id="content">
-		<div id="layouts" style="width: 100%; height: 100%;"></div>
-		<div id="task_head" style="display:none">
-			<div class="icon-stask" style="width:20px;height:20px;float:left"></div>
-			<div style="width:auto;float:left;font-size:18px;padding-left:5px">
-				<span class="ticket-lbl"><b>#<?php echo $_TASK_DATA['id']; ?></b></span> - <b><?php echo $_TASK_DATA['name']; ?></b>
-			</div>
-			<div class="<?php echo $_TASK_DATA->status['icon']; ?>" style="width:20px;height:20px;float:right"></div>
-			<div class="label2" style="float:right;padding-right:2px;text-align:right">
-				<?php echo $_TASK_DATA->status['name']; ?>
-			</div>
+<?php 
+	if($_AJAX != true){
+		include('header.php'); 
+		echo '<div id="content">';
+	}
+?>
 
-			<div style="clear:both;padding-top:10px">
-				<table>
-					<tr>
-						<td>Project</td>
-						<td>:</td>
-						<td colspan="5">
-							<b>#<?php echo $_TASK_DATA->project['id']; ?> - <?php echo $_TASK_DATA->project['name']; ?></b>
-						</td>
-					</tr>
-					<tr>
-						<td>Priority</td>
-						<td>:</td>
-						<td>
-							<div style="float:left"><?php echo $_TASK_DATA['priority']; ?></div> 
-						</td>
-						<td style="width:10px"></td>
-						<td>Start Date</td>
-						<td>:</td>
-						<td>
-							<b><?php echo date(Handler::$_DF,strtotime($_TASK_DATA['start_date'])); ?></b>
-						</td>
-					</tr>
-					<tr>
-						<td>Progress</td>
-						<td>:</td>
-						<td>
-							<div class="progress-box" style="width:200px;overflow:hidden">
-								<div class="progress-fill" style="width:<?php echo $_TASK_DATA['progress']*2; ?>px;background-color:hsl(<?php echo $_TASK_DATA['progress']; ?>, 100%, 50%)"></div>
-							</div>
-							<div style="float:left"><?php echo $_TASK_DATA['progress']; ?>%</div> 
-						</td>
-						<td style="width:10px"></td>
-						<td>End Date</td>
-						<td>:</td>
-						<td>
-							<b><?php echo date(Handler::$_DF,strtotime($_TASK_DATA['end_date'])); ?></b>
-						</td>
-						<td style="width:10px"></td>
-						<td>Assigned By</td>
-						<td>:</td>
-						<td>
-							<?php echo $_TASK_DATA->user['fullname']; ?>
-						</td>
-					</tr>
-				</table>
-			</div>
+	<div id="layout_preview_task" style="width: 100%; height: 100%;"></div>
+	<div id="task_head" style="display:none">
+		<div class="icon-stask" style="width:20px;height:20px;float:left"></div>
+		<div style="width:auto;float:left;font-size:18px;padding-left:5px">
+			<span class="ticket-lbl"><b>#<?php echo $_TASK_DATA['id']; ?></b></span> - <b><?php echo $_TASK_DATA['name']; ?></b>
 		</div>
-		<div id="task_member" style="display:none">
-			<?php 
-				$allowAdd = array(); 
-				foreach ($_TASKER_DATA as $key => $value) {
-					array_push($allowAdd, $value->user['id']);
-					echo '<div class="icon-user user-project n-button" onClick="userPreview(\''.$value->user['id'].'\')" >'.$value->user['fullname'].'</div>';
-				}
-			?>
+		<div class="<?php echo $_TASK_DATA->status['icon']; ?>" style="width:20px;height:20px;float:right"></div>
+		<div class="label2" style="float:right;padding-right:2px;text-align:right">
+			<?php echo $_TASK_DATA->status['name']; ?>
 		</div>
-		<div id="task_desc" style="display:none">
-			<div id="desc_area"><?php echo $_TASK_DATA['description']; ?></div>
-		</div>
-		<div id="task_activity" style="display:none">
-			<table style="width:100%">
-			<?php foreach ($_ACT_DATA as $key => $value) { ?>
+
+		<div style="clear:both;padding-top:10px">
+			<table>
 				<tr>
-					<td style="vertical-align:top;width:55px">
-						<div style="width:50px;height:50px;float:left;border:1px solid #DFDFDF">
-							<img src="<?php echo STATIC_DIR.$value->user['profile_pic_url']; ?>" style="width:100%;height:100%">
-						</div>
-					</td>
-					<td  class="activity-td">
-						<div style="border:1px solid #DFDFDF;float:left;width:100%">
-
-							<table style="width:100%">
-								<tr>
-									<td style="height:20px">
-										<div class="margined label label-default" style="float:left" >
-											#<?php echo $value['id']; ?>
-										</div>
-										<div class="icon-user user-project" style="float:left" >
-											<?php echo $value->user['fullname']; ?>
-											<?php if($value['user_id'] == Handler::$_LOGIN_USER_ID){ ?>
-												<a href="#" onClick="editActivity('<?php echo $value['id']; ?>')">[Edit]</a> <a href="#" onClick="deleteActivity('<?php echo $value['id']; ?>')">[Delete]</a>
-											<?php } ?>
-										</div>
-									</td>
-									<td rowspan="2" style="width:165px;vertical-align:top">
-
-										<table>
-											<tr>
-												<td><div class="icon-date icon-enabled" style="float:left;margin:0px"><?php echo date(Handler::$_DF,strtotime($value['input_date'])); ?></div></td>
-											</tr>
-											<tr>
-												<td><div class="<?php echo $value->status['icon']; ?> icon-enabled" style="float:left;margin:0px"><?php echo $value->status['name']; ?></div></td>
-											</tr>
-											<tr>
-												<td>
-													<div class="icon-progress icon-enabled" style="float:left;margin:0px">
-														<div class="progress-box" style="width:100px;overflow:hidden">
-															<div class="progress-fill" style="width:<?php echo $value['progress']; ?>px;background-color:hsl(<?php echo $value['progress']; ?>, 100%, 50%);"></div>
-														</div>
-														<div style="float:left"><?php echo $value['progress']; ?>%</div> 
-													</div>
-												</td>
-											</tr>
-										</table>
-
-									</td>
-								</tr>
-								<tr>
-									<td style="vertical-align:top;background-color: #FAFAFA;vertical-align:top;">
-										<div class="icon-comment icon-enabled comment-box" style="float:left;height:100%"><?php echo $value['comment']; ?></div>
-									</td>
-								</tr>
-							</table>
-							
-						</div>
+					<td>Project</td>
+					<td>:</td>
+					<td colspan="5">
+						<b>#<?php echo $_TASK_DATA->project['id']; ?> - <?php echo $_TASK_DATA->project['name']; ?></b>
 					</td>
 				</tr>
-			<?php } ?>
+				<tr>
+					<td>Priority</td>
+					<td>:</td>
+					<td>
+						<div style="float:left"><?php echo $_TASK_DATA['priority']; ?></div> 
+					</td>
+					<td style="width:10px"></td>
+					<td>Start Date</td>
+					<td>:</td>
+					<td>
+						<b><?php echo date(Handler::$_DF,strtotime($_TASK_DATA['start_date'])); ?></b>
+					</td>
+				</tr>
+				<tr>
+					<td>Progress</td>
+					<td>:</td>
+					<td>
+						<div class="progress-box" style="width:200px;overflow:hidden">
+							<div class="progress-fill" style="width:<?php echo $_TASK_DATA['progress']*2; ?>px;background-color:hsl(<?php echo $_TASK_DATA['progress']; ?>, 100%, 50%)"></div>
+						</div>
+						<div style="float:left"><?php echo $_TASK_DATA['progress']; ?>%</div> 
+					</td>
+					<td style="width:10px"></td>
+					<td>End Date</td>
+					<td>:</td>
+					<td>
+						<b><?php echo date(Handler::$_DF,strtotime($_TASK_DATA['end_date'])); ?></b>
+					</td>
+					<td style="width:10px"></td>
+					<td>Assigned By</td>
+					<td>:</td>
+					<td>
+						<?php echo $_TASK_DATA->user['fullname']; ?>
+					</td>
+				</tr>
 			</table>
 		</div>
+	</div>
+	<div id="task_member" style="display:none">
+		<?php 
+			$allowAdd = array(); 
+			foreach ($_TASKER_DATA as $key => $value) {
+				array_push($allowAdd, $value->user['id']);
+				echo '<div class="icon-user user-project n-button" onClick="userPreview(\''.$value->user['id'].'\')" >'.$value->user['fullname'].'</div>';
+			}
+		?>
+	</div>
+	<div id="task_desc" style="display:none">
+		<div id="desc_area"><?php echo $_TASK_DATA['description']; ?></div>
+	</div>
+	<div id="task_activity" style="display:none">
+		<table style="width:100%">
+		<?php foreach ($_ACT_DATA as $key => $value) { ?>
+			<tr>
+				<td style="vertical-align:top;width:55px">
+					<div style="width:50px;height:50px;float:left;border:1px solid #DFDFDF">
+						<img src="<?php echo STATIC_DIR.$value->user['profile_pic_url']; ?>" style="width:100%;height:100%">
+					</div>
+				</td>
+				<td  class="activity-td">
+					<div style="border:1px solid #DFDFDF;float:left;width:100%">
 
-    </div>
+						<table style="width:100%">
+							<tr>
+								<td style="height:20px">
+									<div class="margined label label-default" style="float:left" >
+										#<?php echo $value['id']; ?>
+									</div>
+									<div class="icon-user user-project" style="float:left" >
+										<?php echo $value->user['fullname']; ?>
+										<?php if($value['user_id'] == Handler::$_LOGIN_USER_ID){ ?>
+											<a href="#" onClick="editActivity('<?php echo $value['id']; ?>')">[Edit]</a> <a href="#" onClick="deleteActivity('<?php echo $value['id']; ?>')">[Delete]</a>
+										<?php } ?>
+									</div>
+								</td>
+								<td rowspan="2" style="width:165px;vertical-align:top">
 
-<?php include('footer.php'); ?>
+									<table>
+										<tr>
+											<td><div class="icon-date icon-enabled" style="float:left;margin:0px"><?php echo date(Handler::$_DF,strtotime($value['input_date'])); ?></div></td>
+										</tr>
+										<tr>
+											<td><div class="<?php echo $value->status['icon']; ?> icon-enabled" style="float:left;margin:0px"><?php echo $value->status['name']; ?></div></td>
+										</tr>
+										<tr>
+											<td>
+												<div class="icon-progress icon-enabled" style="float:left;margin:0px">
+													<div class="progress-box" style="width:100px;overflow:hidden">
+														<div class="progress-fill" style="width:<?php echo $value['progress']; ?>px;background-color:hsl(<?php echo $value['progress']; ?>, 100%, 50%);"></div>
+													</div>
+													<div style="float:left"><?php echo $value['progress']; ?>%</div> 
+												</div>
+											</td>
+										</tr>
+									</table>
 
+								</td>
+							</tr>
+							<tr>
+								<td style="vertical-align:top;background-color: #FAFAFA;vertical-align:top;">
+									<div class="icon-comment icon-enabled comment-box" style="float:left;height:100%"><?php echo $value['comment']; ?></div>
+								</td>
+							</tr>
+						</table>
+						
+					</div>
+				</td>
+			</tr>
+		<?php } ?>
+		</table>
+	</div>
+
+<?php 
+	if($_AJAX != true){ 
+		echo '</div>';
+		include('footer.php'); 
+	}
+?>
 
 <script type="text/javascript">
 $(function () {
@@ -159,8 +165,8 @@ $(function () {
         	}
         }
     };
-    $('#layouts').w2layout({
-        name: 'layouts',
+    $('#layout_preview_task').w2layout({
+        name: 'layout_preview_task',
         panels: [
             { 
             	type: 'top', 

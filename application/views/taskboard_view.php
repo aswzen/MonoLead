@@ -34,9 +34,14 @@ $(function () {
     }));
 
     function loadTaskboard(event){
+        if(event.node['type'] == 'task'){
+            $().w2destroy('layout_preview_task');
+        }
+
         $.ajax({
             url: '<?php echo BASE_URL; ?>taskboard'+event.node['link'],
             type: 'POST',
+            dataType: "HTML",
             }).success(function(data){
             w2ui['layout_taskboard'].content('main', data);
         });

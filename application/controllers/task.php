@@ -257,6 +257,7 @@ class Task extends Controller {
         $template->set('_TASKER_DATA',$_TASKER_DATA);
         $template->set('_TASK_DATA',$_TASK_DATA);
         $template->set('_ACT_DATA',$_ACT_DATA);
+        $template->set('_AJAX',false);
         $template->render();
 
     }
