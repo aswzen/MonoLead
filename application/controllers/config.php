@@ -28,7 +28,8 @@ class Config extends Controller {
         $array = array(
             "site_name" => $_POST['record']['site_name'],
             "additional_footer" => $_POST['record']['additional_footer'],
-            "maintenance_mode" => $_POST['record']['maintenance_mode']['id']
+            "maintenance_mode" => $_POST['record']['maintenance_mode']['id'],
+            "datetime_format" => $_POST['record']['datetime_format']
         );
 
         $_CONFIG->saveConfig($array);

@@ -86,6 +86,15 @@ $(function () {
                     attr: 'style="width: 230px"'
                 } 
             },
+            { 
+                field: 'datetime_format', 
+                type: 'text', 
+                html: { 
+                    caption: 'Datetime Format', 
+                    text: ' *PHP Format',
+                    attr: 'style="width: 130px"'
+                } 
+            }
         ],
         record: <?php echo $_CONFIG_DATA; ?>,
         actions: {

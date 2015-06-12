@@ -35,7 +35,7 @@
 					<td>Start Date</td>
 					<td>:</td>
 					<td>
-						<b><?php echo date(Handler::$_DF,strtotime($_TASK_DATA['start_date'])); ?></b>
+						<span class="label label-warning"><?php echo date(Handler::$_DF,strtotime($_TASK_DATA['start_date'])); ?></span>
 					</td>
 				</tr>
 				<tr>
@@ -51,7 +51,7 @@
 					<td>End Date</td>
 					<td>:</td>
 					<td>
-						<b><?php echo date(Handler::$_DF,strtotime($_TASK_DATA['end_date'])); ?></b>
+						<span class="label label-primary"><?php echo date(Handler::$_DF,strtotime($_TASK_DATA['end_date'])); ?></span>
 					</td>
 					<td style="width:10px"></td>
 					<td>Assigned By</td>
