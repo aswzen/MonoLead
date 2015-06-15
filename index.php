@@ -14,16 +14,18 @@ define('APP_DIR', ROOT_DIR .'application/');
 $_CF_FILE = APP_DIR .'config/config.php';
 if (!file_exists($_CF_FILE)) {
 	echo '<div style="padding:20px;font: 12px Verdana;font-weight:bold">';
-	echo 'It Seems you dont set up the MonoLead. Please go here: <a href="install.php">Setup</a>';
+	echo 'It Seems you did not set up the MonoLead. Please go here: <a href="install.php">Setup</a>';
 	echo '</div>';
 	die();
 } 
+
 // Includes
 require(APP_DIR .'config/config.php');
 require(ROOT_DIR .'system/model.php');
 require(ROOT_DIR .'system/view.php');
 require(ROOT_DIR .'system/controller.php');
 require(ROOT_DIR .'system/pip.php');
+
 
 // Define base URL
 global $config;

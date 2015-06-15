@@ -1,12 +1,128 @@
 <?php
 class User extends Controller {
-
+   
     function index()
     {
-       
+        $template = $this->loadView('user_view');
 
+        $_USERGROUP = $this->loadModel('UserGroupModel');
+        $_USERGROUP_DATA = $_USERGROUP->getAllUsergroup();
+
+        $result = array();
+        foreach ($_USERGROUP_DATA as $key => $value) {
+            array_push($result, array(
+                'text' => $value['usergroup'], 
+                'id' => $value['id'],
+                'icon' => $value['icon']
+            ));
+        }
+
+        $template->set('_USERGROUP_DATA',json_encode($result));
+
+        $template->render();
     }
-    
+
+    function get_user_list()
+    {
+        $_USER = $this->loadModel('UserModel');
+        $_DATA = $_USER->getAllUsers($_POST);
+
+        $result['status'] = 'success';
+        $result['total'] = count($_DATA);
+        $result['records'] = array();
+        foreach ($_DATA as $key => $value) {
+            array_push($result['records'], array(
+                'id' => $value['id'], 
+                'fullname' => $value['fullname'], 
+                'nickname' => $value['nickname'],
+                'email' => $value['email'],
+                'phone' => $value['phone'],
+                'status' => $value['status'],
+                'password' => $value['password'],
+                'usergroup_id' => $value['usergroup_id'],
+                'usergroup_name' => $value->usergroup['usergroup'],
+                'usergroup_icon' => $value->usergroup['icon']
+            ));
+        }
+        echo json_encode($result);
+        die();
+    }
+
+    function get_user($id = null)
+    {
+       
+        $_USER = $this->loadModel('UserModel');
+        $_USER_DATA = $_USER->getUser($id);
+
+        $result['status'] = 'success';
+        $result['record'] = array(
+            'recid' => 1, 
+            'id' => $_USER_DATA['id'], 
+            'fullname' => $_USER_DATA['fullname'], 
+            'nickname' => $_USER_DATA['nickname'], 
+            'email' =>$_USER_DATA['email'],
+            'phone' => $_USER_DATA['phone'],
+            'password' => $_USER_DATA['password'],
+            'usergroup_id' => $_USER_DATA['usergroup_id'],
+            'status' => $_USER_DATA['status'],
+            'address' => $_USER_DATA['address']
+        );
+        echo json_encode($result);
+        die();
+    }
+
+    function go_insert_user()
+    {
+       
+        $_USER = $this->loadModel('UserModel');
+
+        $array = array(
+            "id" => $this->getRN('USER'),
+            "fullname" => $_POST['record']['fullname'],
+            "nickname" => $_POST['record']['nickname'],
+            "email" => $_POST['record']['email'],
+            "phone" => $_POST['record']['phone'],
+            "address" => $_POST['record']['address'],
+            "status" => $_POST['record']['status']['id'],
+            "usergroup_id" => $_POST['record']['usergroup_id']['id'],
+            "password" => $_POST['record']['password']
+        );
+
+        $_USER->addUser($array);
+
+        die();
+    }
+
+    function go_edit_user()
+    {
+       
+        $_USER = $this->loadModel('UserModel');
+
+        $array = array(
+            "id" => $_POST['record']['id'],
+            "fullname" => $_POST['record']['fullname'],
+            "nickname" => $_POST['record']['nickname'],
+            "email" => $_POST['record']['email'],
+            "phone" => $_POST['record']['phone'],
+            "address" => $_POST['record']['address'],
+            "status" => $_POST['record']['status']['id'],
+            "usergroup_id" => $_POST['record']['usergroup_id']['id'],
+            "password" => $_POST['record']['password']
+        );
+
+        $_USER->saveUser($array);
+
+        die();
+    }
+
+    function delete_user()
+    {
+        $_USER = $this->loadModel('UserModel');
+        $_USER->deleteUser($_POST['id']);
+
+        die();
+    }
+
     function logout()
     {
         Session::destroy();
@@ -143,38 +259,6 @@ class User extends Controller {
             echo 0;
         }
 
-        //echo Handler::$_LOGIN_STATUS;
-        //echo Session::r('LOGIN_STATUS');
-       // die();
-        // $_DATA = $_USER->getUserLogin(3);
-           
-        // //THIS IS HOW TO LOOP ALL DATA
-        // foreach ($_DATA as $userData) {
-        //    echo $userData["fullname"] . " - " . $userData->usergroup["usergroup"] . "<br>";
-        // }
-        
-        // pr($_DATA);
-
-        // echo count($_USER_RS);
-        // foreach ($_USER_RS as $userData) {
-        //    echo $userData["fullname"] . " - " . $userData->usergroup["usergroup"] . "<br>";
-        // }
-
-        // pr($_USER_RS);
-        // if(!empty($_USER_RS)){
-        //     echo 'tidak kosong';
-        // } else {
-        //     echo 'kosong';
-        // }
-    
-        //THIS IS HOW TO LOOP ALL DATA
-        //foreach ($_USER_RS as $userData) {
-        //   echo $userData["fullname"] . " - " . $userData->usergroup["usergroup"] . "<br>";
-       //// }
-        //echo('masuk');
-        //pr($_USER_RS);
-       // Session::w('LOGIN_STATUS', '1');
-        //$this->redirect('../');
 	}
     
     function preview($id = null)

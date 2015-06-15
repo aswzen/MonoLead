@@ -30,6 +30,26 @@ class UserModel extends Model {
         $result->update($array);
     }
 
+    public function addUser($array = null)
+    {
+        $this->notorm()->user()->insert($array);
+    }
+
+    public function deleteUser($id = null)
+    {
+        $result = $this->notorm()->user[$id];
+        $result->delete();
+    }
+
+    public function saveUser($array = null)
+    {
+        if(empty($array['id'])){
+            $this->notorm()->user()->insert($array);
+        } else {
+            $result = $this->notorm()->user[$array['id']];
+            $result->update($array);
+        }
+    }
 }
 
 ?>

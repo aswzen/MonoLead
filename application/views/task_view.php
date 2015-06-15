@@ -20,7 +20,7 @@
 	        url: '<?php echo BASE_URL; ?>task/get_task_list',
 	        method: 'POST',
 	        recid:'id',
-	       	header:'Task',
+	       	header:'Tasks',
 	        show: {
             	lineNumbers    : true,
 	        	header: true,

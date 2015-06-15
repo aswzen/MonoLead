@@ -5,16 +5,15 @@ class Config extends Controller {
     {
         $template = $this->loadView('config_view');
      	
-     	//$_CONFIG = $this->loadModel('ConfigModel');
      	$_CONFIG = Handler::$_CONFIG;
         $_CONFIG_DATA = $_CONFIG->loadConfig();
 
         $result = array(
             'site_name' => $_CONFIG_DATA['site_name'], 
             'maintenance_mode' => $_CONFIG_DATA['maintenance_mode'], 
-            'additional_footer' => $_CONFIG_DATA['additional_footer']
+            'additional_footer' => $_CONFIG_DATA['additional_footer'],
+            'datetime_format' => $_CONFIG_DATA['datetime_format']
         );
-
         $template->set('_CONFIG_DATA',json_encode($result));
         $template->render();
 	}
