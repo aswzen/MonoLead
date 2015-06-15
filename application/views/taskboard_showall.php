@@ -1,6 +1,18 @@
+<?php if($_LT == 'NC'){
+	$s = 'selected';
+	$e = '';
+} else {
+	$s = '';
+	$e = 'selected';
+} ?>
+
 <table style="width:100%" >
 	<h2>
-		MY PROJECT
+		MY PROJECT 
+		<select id="list_type" style="float:right">
+			<option value="ALL" <?php echo $e;?> >All</option>
+			<option value="NC" <?php echo $s;?> >Not Complete</option>
+		</select>
 	</h2>
 	<?php foreach ($_PROJECT_DATA as $key => $value) { ?>
 		<tr>
@@ -72,5 +84,17 @@
 	function openTask(id) {
 		openInSameTab('<?php echo BASE_URL; ?>task/preview/'+id);
 	}
+
+    $('#list_type').on('change', function (e) {
+	    $.ajax({
+	        url: '<?php echo BASE_URL; ?>taskboard/showall',
+	        type: 'POST',
+	        data:{
+	            type:$('#list_type').val()
+	        },
+	        }).success(function(data){
+	        w2ui['layout_taskboard'].content('main', data);
+	    });
+    });
 	
 </script>

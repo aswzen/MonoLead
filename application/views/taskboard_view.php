@@ -12,6 +12,9 @@ $(function () {
     $.ajax({
         url: '<?php echo BASE_URL; ?>taskboard/showall',
         type: 'POST',
+        data:{
+            type:'ALL'
+        },
         }).success(function(data){
         w2ui['layout_taskboard'].content('main', data);
     });

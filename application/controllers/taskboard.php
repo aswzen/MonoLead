@@ -67,16 +67,29 @@ class Taskboard extends Controller {
         $dataProject = array();
         $dataTask = array();
         $index = 0;
-        foreach ($_PROJECT_DATA as $key2 => $value2) {
-        	$dataTask[$index] = array();
-	        $_TASK_DATA = $_TASK->getTaskByProjectAndUser($value2['id'],Handler::$_LOGIN_USER_ID);
-    		foreach ($_TASK_DATA as $key3 => $value3) {
-		       	array_push($dataTask[$index], $value3);
-    		}
-        	array_push($dataProject, $value2);
-        	$index++;
+        if($_POST['type'] == 'ALL'){
+            foreach ($_PROJECT_DATA as $key2 => $value2) {
+                $dataTask[$index] = array();
+                $_TASK_DATA = $_TASK->getTaskByProjectAndUser($value2['id'],Handler::$_LOGIN_USER_ID);
+                foreach ($_TASK_DATA as $key3 => $value3) {
+                    array_push($dataTask[$index], $value3);
+                }
+                array_push($dataProject, $value2);
+                $index++;
+            } 
+        } else {
+            foreach ($_PROJECT_DATA as $key2 => $value2) {
+            	$dataTask[$index] = array();
+    	        $_TASK_DATA = $_TASK->getTaskByProjectAndUser($value2['id'],Handler::$_LOGIN_USER_ID,'NC');
+        		foreach ($_TASK_DATA as $key3 => $value3) {
+    		       	array_push($dataTask[$index], $value3);
+        		}
+            	array_push($dataProject, $value2);
+            	$index++;
+            }
         }
 
+        $template->set('_LT', $_POST['type']);
         $template->set('_PROJECT_DATA', $dataProject);
         $template->set('_TASK_DATA', $dataTask);
         $template->render();

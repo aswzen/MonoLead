@@ -23,6 +23,11 @@ a{
   text-decoration: none;
   color: #326FAB;
 }
+select {
+  height: 2em;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
 .footer{
 	font-size:10px !important;
 	font-family: Tahoma;

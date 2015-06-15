@@ -67,14 +67,18 @@ class TaskModel extends Model {
         return $result;
     }
 
-    public function getTaskByProjectAndUser($project_id = null, $user_id = null)
+    public function getTaskByProjectAndUser($project_id = null, $user_id = null, $type = null)
     {
         $result2 = $this->notorm()->tasker()->where( array("user_id" => $user_id) ) ;
         $listTaskId = array();
         foreach ($result2 as $key => $value) {
             array_push($listTaskId, $value['task_id']);
         }
-        $result = $this->notorm()->task()->where( array("project_id" => $project_id, "id" => $listTaskId) )->order("priority ASC") ;
+        if($type == 'NC'){
+            $result = $this->notorm()->task()->where( array("status_id NOT " => array('5'), "project_id" => $project_id, "id" => $listTaskId) )->order("priority ASC") ;
+        } else {
+            $result = $this->notorm()->task()->where( array("project_id" => $project_id, "id" => $listTaskId) )->order("priority ASC") ;
+        }
         
         return $result;
     }
