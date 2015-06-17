@@ -4,7 +4,7 @@ class ActivityModel extends Model {
 	
     public function getAllActivities($param = null)
     {
-        $result = $this->notorm()->activity();   
+        $result = $this->notorm()->activity()->order("input_date DESC");   
         return $result;
     }
 
