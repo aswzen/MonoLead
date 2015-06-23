@@ -33,10 +33,10 @@
 		    },   
 		    toolbar: {
 		        items: [
-		            { type: 'button',  id: 'preview_task',  caption: 'Preview', img: 'icon-preview', hint: 'Preview task' },
-		            { type: 'button',  id: 'add_task',  caption: 'Add', img: 'icon-add', hint: 'Add new task' },
-		            { type: 'button',  id: 'edit_task',  caption: 'Edit', img: 'icon-pencil', hint: 'Edit' },
-		            { type: 'button',  id: 'delete_task',  caption: 'Delete', img: 'icon-cancel', hint: 'Delete' }
+		            { type: 'button',  id: 'preview_task',  caption: 'Preview', img: 'icon-preview', hint: 'Preview task' }, 
+		            <?php if(Handler::$_IS_ADMIN||Handler::$_IS_MANAGER) echo "{ type: 'button',  id: 'add_task',  caption: 'Add', img: 'icon-add', hint: 'Add new task' },"; ?>
+		            <?php if(Handler::$_IS_ADMIN||Handler::$_IS_MANAGER) echo "{ type: 'button',  id: 'edit_task',  caption: 'Edit', img: 'icon-pencil', hint: 'Edit' },"; ?>
+		            <?php if(Handler::$_IS_ADMIN||Handler::$_IS_MANAGER) echo " { type: 'button',  id: 'delete_task',  caption: 'Delete', img: 'icon-cancel', hint: 'Delete' }"; ?>
 		        ],
 		        onClick: function (target, data) {
 		        	var selected = w2ui['task_grid'].get(w2ui['task_grid'].getSelection()[0]);

@@ -3,11 +3,11 @@
     <div id="content">
         <div id="layouts" style="width: 100%; height: 100%;"></div>
         <div id="config_head" style="display:none">
-            <h2>Monolead</h2>
+            <h1>Monolead</h1>
                 Written in PHP 5.4, PIP PHP Framework, NotORM for PHP ORM Module, using jQuery, w2ui javascript 
                 UI thanks to vitmalina (w2ui.com)<br><br>
                 author : Agus Sigit Wisnubroto (aswzen@gmail.com)<br><br>
-                Donation: 
+                Donation: <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=QTY3WBN669GP2&lc=ID&item_name=Agus%20Sigit%20W&item_number=aswzen&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted">Here</a>
         </div>
         <div id="config_site" style="display:none">
             <div id="form_site" style="width: 500px;height:auto"></div>

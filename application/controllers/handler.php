@@ -11,6 +11,7 @@ class Handler extends Controller {
     public static $_CONTROLLER_NAME = 'None';
     public static $_ACTION_NAME = 'None';
     public static $_IS_ADMIN = false;
+    public static $_IS_MANAGER = false;
 
     public static $_SITE_NAME = '';
     public static $_ADDITIONAL_FOOTER = '';
@@ -40,8 +41,12 @@ class Handler extends Controller {
 	        	self::$_LOGIN_ACT_NAME = 'logout';
 	        	self::$_LOGIN_ACT_LABEL = 'Logout';
 	        	
-	        	if(Session::r('USER_GROUP') == 'ADM'){
-	        		self::$_IS_ADMIN = true;
+                if(Session::r('USER_GROUP') == 'ADM'){
+                    self::$_IS_ADMIN = true;
+                }
+
+	        	if(Session::r('USER_GROUP') == 'MAN'){
+	        		self::$_IS_MANAGER = true;
 	        	}
 
 	        } else {

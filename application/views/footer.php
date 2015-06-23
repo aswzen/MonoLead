@@ -15,12 +15,12 @@
                 { type: 'button',  id: 'main', caption: 'Dashboard', img: 'icon-house' },
                 { type: 'break',  id: 'break0' },
                 { type: 'button',  id: 'taskboard', caption: 'Taskboard', img: 'icon-taskboard' },
-                { type: 'button',  id: 'project', caption: 'Projects', img: 'icon-box' },
+                <?php if(Handler::$_IS_ADMIN||Handler::$_IS_MANAGER) echo "{ type: 'button',  id: 'project', caption: 'Projects', img: 'icon-box' },"; ?>
                 { type: 'button',  id: 'ticket', caption: 'Tickets', img: 'icon-ticket' },
                 { type: 'break',  id: 'break1' },
                 { type: 'button',  id: 'task', caption: 'Tasks', img: 'icon-task' },
-                { type: 'button',  id: 'user', caption: 'Users', img: 'icon-group' },
-                <?php if(Handler::$_IS_ADMIN) echo "{ type: 'button',  id: 'config', caption: 'Configuration', img: 'icon-config' },"; ?>
+                <?php if(Handler::$_IS_ADMIN||Handler::$_IS_MANAGER) echo "{ type: 'button',  id: 'user', caption: 'Users', img: 'icon-group' },"; ?>
+                <?php if(Handler::$_IS_ADMIN||Handler::$_IS_MANAGER) echo "{ type: 'button',  id: 'config', caption: 'Configuration', img: 'icon-config' },"; ?>
                	{ type: 'spacer' },
                 { type: 'button',  id: 'user/profile',  caption: '<?php echo Handler::$_LOGIN_USER_NAME; ?>', img: 'icon-info', hint: 'User profile' },
                 { type: 'button',  id: 'user/<?php echo Handler::$_LOGIN_ACT_NAME; ?>',  caption: '<?php echo Handler::$_LOGIN_ACT_LABEL; ?>', img: 'icon-user', hint: 'Logout from system' }

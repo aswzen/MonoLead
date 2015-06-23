@@ -17,6 +17,11 @@ CREATE TABLE `usergroup` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Group Table';
 
+INSERT INTO `usergroup` (`id`, `groupcode`, `usergroup`, `badge`, `icon`) VALUES
+  (1, 'ADM', 'Admin', 'ADMINISTRATOR', 'icon-admin'),
+  (2, 'MAN', 'Manager', 'MANAGER', 'icon-manager'),
+  (3, 'PRO', 'Programmer', 'PROGRAMMER', 'icon-developer');
+
 CREATE TABLE `runningnumber` (
   `numbercode` varchar(50) NOT NULL,
   `prefix` varchar(50) NOT NULL,
@@ -25,6 +30,12 @@ CREATE TABLE `runningnumber` (
   PRIMARY KEY (`numbercode`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+INSERT INTO `runningnumber` (`numbercode`, `prefix`, `format`, `lastnumber`) VALUES
+  ('PROJECT', 'PR', '000', 0),
+  ('TASK', 'TS', '000', 0),
+  ('TICKET', 'TC', '000', 0),
+  ('USER', 'SR', '000', 1);
+
 CREATE TABLE `status` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL DEFAULT '0',
@@ -32,6 +43,15 @@ CREATE TABLE `status` (
   `icon` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `status` (`id`, `name`, `type`, `icon`) VALUES
+  (1, 'Open', 'PROJECT', 'icon-open'),
+  (2, 'Close', 'PROJECT', 'icon-close'),
+  (3, 'Reopen', 'PROJECT', 'icon-reopen'),
+  (4, 'Unknown', 'PROJECT', 'icon-unknown'),
+  (5, 'Complete', 'PROJECT', 'icon-complete'),
+  (6, 'Waiting Assesment', 'PROJECT', 'icon-waiting'),
+  (7, 'Stuck', 'PROJECT', 'icon-stuck');
 
 CREATE TABLE `project` (
   `id` varchar(50) NOT NULL,

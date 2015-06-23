@@ -70,14 +70,19 @@
                 die("Connection failed (bacause of server address/database name/database username/database password) please check your database properties: " . mysqli_connect_error().'</br>');
             } else {
                 echo "-- Database Server - Connected successfully.</br>";
-                echo "-- Database - Connected successfully.</br></br>";
+                echo "-- Database - Connected successfully.</br>";
+
                 $query = file_get_contents('_CREATE.sql');
+                $query.= "INSERT INTO `config` (`id`, `site_name`, `maintenance_mode`, `additional_footer`, `datetime_format`) VALUES (1, '".$_POST['site_name']."', 'No', '".$_POST['site_footer']."', '".$_POST['date_format()']."');";
+                $query.= "INSERT INTO `user` (`id`, `fullname`, `nickname`, `email`, `phone`, `address`, `other`, `status`, `password`, `profile_pic_url`, `usergroup_id`) VALUES ('SR000', 'Administrator', 'Admin', '".$_POST['admin_email']."', '0', '-', '-', 'Active', '".$_POST['admin_password']."', 'images/profile_pic_url/SR000.JPG', 1);";
                 if($result = $conn->multi_query($query)){
-                    echo 'Setup complete please click this <a href="index.php">link</a>.';
-                    die();
+                    echo "-- Database - Table created.</br>";
+                    echo "-- Database - Config created.</br>";
+                    echo "-- Database - User Admin created.</br></br>";
+                    echo "Setup Success <a href='/index.php''>Click here to proceed</a></br></br>";
                 } else {
-                    die('There was an error running the query [' . $conn->error . ']');
-                }
+                    die('1. There was an error running the query [' . $conn->error . ']');
+                }               
             }
             die();
         }
@@ -132,12 +137,17 @@
         		<td><input type="text" name="database_password" style="width:250px" value=""/> <span class="info">*your database password</span></td>
         	</tr>
         	<tr>
-        		<th colspan="3">Additional</th>
+        		<th colspan="3">Administration</th>
         	</tr>
+            <tr>
+                <td>Admin Email</td>
+                <td>:</td>
+                <td><input type="text" name="admin_email" style="width:250px" value=""/></td>
+            </tr>
         	<tr>
-        		<td>Install sample data?</td>
+        		<td>Admin Password</td>
         		<td>:</td>
-        		<td><input type="checkbox" name="sample_data" /> <span class="info">*sample data to make sure the app works</span></td>
+        		<td><input type="text" name="admin_password" style="width:250px" value=""/></td>
         	</tr>
         </table>
     </div>
