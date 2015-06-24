@@ -60,13 +60,18 @@ class Taskboard extends Controller {
     {
         $template = $this->loadView('taskboard_showall');
 
-    	$_PROJECT = $this->loadModel('ProjectModel');
-    	$_TASK = $this->loadModel('TaskModel');
+        if(!isset($_POST['type'])){
+            $_POST['type'] = 'ALL';
+        }
 
-        $_PROJECT_DATA = $_PROJECT->getAllProjectsByUser(Handler::$_LOGIN_USER_ID);
+        $_PROJECT = $this->loadModel('ProjectModel');
+        $_TASK = $this->loadModel('TaskModel');
+
+        $_PROJECT_DATA = $_PROJECT->getAllProjectsByUser(Handler::$_LOGIN_USER_ID,$_POST['type']);
         $dataProject = array();
         $dataTask = array();
         $index = 0;
+
         if($_POST['type'] == 'ALL'){
             foreach ($_PROJECT_DATA as $key2 => $value2) {
                 $dataTask[$index] = array();

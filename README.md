@@ -20,12 +20,12 @@ MonoLead is a light web based project management system. MonoLead aims to be as 
 ## Installation
 
 * Download MonoLead and extract
-* Navigate to `http://localhost/monolead/install` and follow the instruction
+* Navigate to `http://localhost/monolead/install.php` and follow the instruction
 * MonoLead ready to use.
 
 ## Documentation
 
-Visit [August's Website](asw.web.id) to see the documentation.
+Visit [August's Website](http://blog.asw.web.id/?pages/MonoLead) to see the documentation.
 
 ## License
 

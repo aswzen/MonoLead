@@ -7,13 +7,20 @@
 } ?>
 
 <table style="width:100%" >
+	<div style="float:left">
 	<h2>
 		MY PROJECT 
+	</h2>
+	</div>
+	<div style="float:right">
 		<select id="list_type" style="float:right">
 			<option value="ALL" <?php echo $e;?> >All</option>
 			<option value="NC" <?php echo $s;?> >Not Complete</option>
 		</select>
-	</h2>
+		<div style="float:right;padding:5px">
+			Task Status: 
+		</div>
+	</div>
 	<?php foreach ($_PROJECT_DATA as $key => $value) { ?>
 		<tr>
 			<td>
@@ -87,10 +94,10 @@
 
     $('#list_type').on('change', function (e) {
 	    $.ajax({
-	        url: '<?php echo BASE_URL; ?>taskboard/showall',
+	        url: '<?php echo BASE_URL; ?>taskboard/showall/',
 	        type: 'POST',
 	        data:{
-	            type:$('#list_type').val()
+	            type: $('#list_type').val()
 	        },
 	        }).success(function(data){
 	        w2ui['layout_taskboard'].content('main', data);

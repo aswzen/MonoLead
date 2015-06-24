@@ -42,9 +42,14 @@ class ProjectModel extends Model {
         $result->delete();
     }
     
-    public function getAllProjectsByUser($user_id = null)
+    public function getAllProjectsByUser($user_id = null, $type = null)
     {
-        $result = $this->notorm()->tasker()->where( array("user_id" => $user_id) ) ;
+        if($type == 'ALL'){
+            $result = $this->notorm()->tasker()->where( array("user_id" => $user_id) ) ;
+        } else {
+            $result = $this->notorm()->tasker()->where( array("tasker.user_id" => $user_id, "task.status_id NOT" => array('5') ) ) ;
+        }
+
         $listProjectId = array();
         $listProject = array();
         foreach ($result as $key => $value) {
