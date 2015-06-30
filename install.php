@@ -1,29 +1,29 @@
 <head>
-	<title>MonoLead - Setup</title>
+    <title>MonoLead - Setup</title>
 </head>
 <style type="text/css">
-	body{
-		font: 14px Tahoma;
-	}
-	.header,.footer{
-		width:600px; 
-		margin:0 auto;
-		border:1px solid #eee;
-		padding:10px;
-		background-color: #EAEAEA;
-		height: 25px;
-	}
-	.content{
-		width:600px; 
-		margin:0 auto;
-		border:1px solid #eee;
-		padding:10px;
-		background-color: #EAEAEA;
-		height: auto;
-	}
-	.info{
-		font-size: 10px;
-	}
+    body{
+        font: 14px Tahoma;
+    }
+    .header,.footer{
+        width:600px; 
+        margin:0 auto;
+        border:1px solid #eee;
+        padding:10px;
+        background-color: #EAEAEA;
+        height: 25px;
+    }
+    .content{
+        width:600px; 
+        margin:0 auto;
+        border:1px solid #eee;
+        padding:10px;
+        background-color: #EAEAEA;
+        height: auto;
+    }
+    .info{
+        font-size: 10px;
+    }
     input{
         padding: .5em .6em;
         display: inline-block;
@@ -73,7 +73,7 @@
                 echo "-- Database - Connected successfully.</br>";
 
                 $query = file_get_contents('_CREATE.sql');
-                $query.= "INSERT INTO `config` (`id`, `site_name`, `maintenance_mode`, `additional_footer`, `datetime_format`) VALUES (1, '".$_POST['site_name']."', 'No', '".$_POST['site_footer']."', '".$_POST['date_format()']."');";
+                $query.= "INSERT INTO `config` (`id`, `site_name`, `maintenance_mode`, `additional_footer`, `datetime_format`) VALUES (1, '".$_POST['site_name']."', 'No', '".$_POST['site_footer']."', '".$_POST['date_format']."');";
                 $query.= "INSERT INTO `user` (`id`, `fullname`, `nickname`, `email`, `phone`, `address`, `other`, `status`, `password`, `profile_pic_url`, `usergroup_id`) VALUES ('SR000', 'Administrator', 'Admin', '".$_POST['admin_email']."', '0', '-', '-', 'Active', '".$_POST['admin_password']."', 'images/profile_pic_url/SR000.JPG', 1);";
                 if($result = $conn->multi_query($query)){
                     echo "-- Database - Table created.</br>";
@@ -88,71 +88,71 @@
         }
 
     ?>
-	<form action="#" method="POST">
+    <form action="#" method="POST">
         <table style="width:100%">
-        	<tr>
-        		<th colspan="3">General</th>
-        	</tr>
-        	<tr>
-        		<td style="width:170px">Base Url</td>
-        		<td>:</td>
-        		<td><input type="text" name="base_url" style="width:200px" value="<?php echo preg_replace('/install\.php/','',"http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"); ?>"/> <span class="info">*skip it if you don't know</span></td>
-        	</tr>
-        	<tr>
-        		<td>Site Name</td>
-        		<td>:</td>
-        		<td><input type="text" name="site_name" style="width:250px" value="MonoLead - Project Management System"/> <span class="info">*will appear on every top page</span></td>
-        	</tr>
-        	<tr>
-        		<td >Site Footer</td>
-        		<td>:</td>
-        		<td><input type="text" name="site_footer" style="width:250px" value="(c) MonoLead 2015"/> <span class="info">*will appear on every bottom page</span></td>
-        	</tr>
-        	<tr>
-        		<td >Date Format</td>
-        		<td>:</td>
-        		<td><input type="text" name="dat_format" style="width:100px" value="d F Y H:i"/> <span class="info">*date time format (based on PHP)</span></td>
-        	</tr>
-        	<tr>
-        		<th colspan="3">Database</th>
-        	</tr>
-        	<tr>
-        		<td>Database Address/Host</td>
-        		<td>:</td>
-        		<td><input type="text" name="database_host" style="width:250px" value="localhost"/> <span class="info">*your database address</span></td>
-        	</tr>
+            <tr>
+                <th colspan="3">General</th>
+            </tr>
+            <tr>
+                <td style="width:170px">Base Url</td>
+                <td>:</td>
+                <td><input type="text" name="base_url" style="width:200px" value="<?php echo preg_replace('/install\.php/','',"http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"); ?>"/> <span class="info">*skip it if you don't know</span></td>
+            </tr>
+            <tr>
+                <td>Site Name</td>
+                <td>:</td>
+                <td><input type="text" name="site_name" style="width:250px" value="MonoLead - Project Management System"/> <span class="info">*will appear on every top page</span></td>
+            </tr>
+            <tr>
+                <td >Site Footer</td>
+                <td>:</td>
+                <td><input type="text" name="site_footer" style="width:250px" value="(c) MonoLead 2015"/> <span class="info">*will appear on every bottom page</span></td>
+            </tr>
+            <tr>
+                <td >Date Format</td>
+                <td>:</td>
+                <td><input type="text" name="date_format" style="width:100px" value="d F Y H:i"/> <span class="info">*date time format (based on PHP)</span></td>
+            </tr>
+            <tr>
+                <th colspan="3">Database</th>
+            </tr>
+            <tr>
+                <td>Database Address/Host</td>
+                <td>:</td>
+                <td><input type="text" name="database_host" style="width:250px" value="localhost"/> <span class="info">*your database address</span></td>
+            </tr>
             <tr>
                 <td>Database Name</td>
                 <td>:</td>
-                <td><input type="text" name="database_name" style="width:250px" value="monolead"/> <span class="info">*your database name</span></td>
+                <td><input type="text" name="database_name" style="width:250px" value="monolead"/> <span class="info">*your database username</span></td>
             </tr>
-        	<tr>
-        		<td>Database Username</td>
-        		<td>:</td>
-        		<td><input type="text" name="database_username" style="width:250px" value="root"/> <span class="info">*your database name</span></td>
-        	</tr>
-        	<tr>
-        		<td>Database Password</td>
-        		<td>:</td>
-        		<td><input type="text" name="database_password" style="width:250px" value=""/> <span class="info">*your database password</span></td>
-        	</tr>
-        	<tr>
-        		<th colspan="3">Administration</th>
-        	</tr>
+            <tr>
+                <td>Database Username</td>
+                <td>:</td>
+                <td><input type="text" name="database_username" style="width:250px" value="root"/> <span class="info">*your database name</span></td>
+            </tr>
+            <tr>
+                <td>Database Password</td>
+                <td>:</td>
+                <td><input type="text" name="database_password" style="width:250px" value=""/> <span class="info">*your database password</span></td>
+            </tr>
+            <tr>
+                <th colspan="3">Administration</th>
+            </tr>
             <tr>
                 <td>Admin Email</td>
                 <td>:</td>
                 <td><input type="text" name="admin_email" style="width:250px" value=""/></td>
             </tr>
-        	<tr>
-        		<td>Admin Password</td>
-        		<td>:</td>
-        		<td><input type="text" name="admin_password" style="width:250px" value=""/></td>
-        	</tr>
+            <tr>
+                <td>Admin Password</td>
+                <td>:</td>
+                <td><input type="text" name="admin_password" style="width:250px" value=""/></td>
+            </tr>
         </table>
     </div>
     <div class="footer">
         <input type="submit" value="Submit Data" style="float:right" onClick="return confirm('Are you sure to submit?')">
     </div>
-	</form>
+    </form>
 </body>

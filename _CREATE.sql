@@ -17,11 +17,6 @@ CREATE TABLE `usergroup` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Group Table';
 
-INSERT INTO `usergroup` (`id`, `groupcode`, `usergroup`, `badge`, `icon`) VALUES
-  (1, 'ADM', 'Admin', 'ADMINISTRATOR', 'icon-admin'),
-  (2, 'MAN', 'Manager', 'MANAGER', 'icon-manager'),
-  (3, 'PRO', 'Programmer', 'PROGRAMMER', 'icon-developer');
-
 CREATE TABLE `runningnumber` (
   `numbercode` varchar(50) NOT NULL,
   `prefix` varchar(50) NOT NULL,
@@ -94,7 +89,7 @@ CREATE TABLE `task` (
   `start_date` datetime NOT NULL,
   `end_date` datetime NOT NULL,
   `user_id` varchar(50) NOT NULL,
-  `update_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
   PRIMARY KEY (`id`),
   KEY `FK_TASK_STATUS_ID` (`status_id`),
   KEY `FK_TASK_PROJECT_ID` (`project_id`),
@@ -123,7 +118,7 @@ CREATE TABLE `activity` (
   `progress` int(11) DEFAULT NULL,
   `status_id` int(11) DEFAULT NULL,
   `visible` set('Y','N') NOT NULL DEFAULT 'Y',
-  `input_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `input_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `FK_COMMENT_TASK_ID` (`task_id`),
   KEY `FK_COMMENT_USER_ID` (`user_id`),
@@ -146,3 +141,7 @@ CREATE TABLE `ticket` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+INSERT INTO `usergroup` (`id`, `groupcode`, `usergroup`, `badge`, `icon`) VALUES
+  (1, 'ADM', 'Admin', 'ADMINISTRATOR', 'icon-admin'),
+  (2, 'MAN', 'Manager', 'MANAGER', 'icon-manager'),
+  (3, 'PRO', 'Programmer', 'PROGRAMMER', 'icon-developer');
