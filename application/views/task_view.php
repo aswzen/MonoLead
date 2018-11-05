@@ -83,7 +83,7 @@
 	                	} else {
 	                		color = '';
 	                	}
-	                    var html = '<div style="'+color+';float:left;width:10px;height:10px;margin:2px;border:1px solid gray"></div>'+ record.priority;
+	                    var html = '<div style="'+color+';float:left;width:10px;height:10px;margin:2px;border:1px solid gray"></div><div class="icon-text-wrap">'+ record.priority+'</div>';
 	                    return html;
 	                }
                 },
@@ -101,7 +101,7 @@
 	            { field: 'project_name', caption: 'Project Name', size: '250px', resizable: true,sortable:true },
 	            { field: 'status_name', caption: 'Status', size: '80px', resizable: true,sortable:true ,
 	                render: function (record, index, column_index) {
-	                    var html = '<div style=";float:left;width:17px;height:17px;margin:0px 2px 0px 2px;line-height:20px" class="'+record.status_icon+'"></div>'+ record.status_name;
+	                    var html = '<div style=";float:left;width:17px;height:17px;margin:0px 2px 0px 2px;line-height:20px" class="'+record.status_icon+'"></div><div class="icon-text-wrap">'+ record.status_name+'</div>';
 	                    return html;
 	                }
                 },

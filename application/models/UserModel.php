@@ -20,7 +20,7 @@ class UserModel extends Model {
     {
         if(empty($username)) die( 'Missing parameter.');
         
-        $result = $this->notorm()->user()->where( array("email" => $username, "password" => $password, "status" => 'Active') );
+        $result = $this->notorm()->user()->where( array("email" => $username, "password" => $password) );
         return $result;
     }
 

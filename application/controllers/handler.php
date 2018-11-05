@@ -18,6 +18,7 @@ class Handler extends Controller {
     public static $_IS_MAINTENANCE = 'No';
     public static $_DF = 'Y-m-d H:i:s';
     public static $_CONFIG = null;
+    public static $_GUEST_REGISTER = 'No';
     
     function __construct() 
     {
@@ -28,7 +29,7 @@ class Handler extends Controller {
     	self::$_ACTION_NAME = ucfirst($this->getAction());
         $ls = Session::r('LOGIN_STATUS');
 
-		if($this->getController() == 'login' || $this->getAction() == 'login'){
+		if($this->getController() == 'login' || $this->getAction() == 'login' || $this->getAction() == 'register'){
 			if(!empty($ls)){
 	        	$this->redirect('main/');
 	        }
@@ -60,7 +61,8 @@ class Handler extends Controller {
     	self::$_SITE_NAME = $_CONFIG_DATA['site_name'];
     	self::$_ADDITIONAL_FOOTER = $_CONFIG_DATA['additional_footer'];
         self::$_IS_MAINTENANCE = $_CONFIG_DATA['maintenance_mode'];
-    	self::$_DF = $_CONFIG_DATA['datetime_format'];
+        self::$_DF = $_CONFIG_DATA['datetime_format'];
+    	self::$_GUEST_REGISTER = $_CONFIG_DATA['guest_register'];
   
     }
     

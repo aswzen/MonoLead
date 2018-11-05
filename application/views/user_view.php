@@ -68,7 +68,7 @@
 	            { field: 'password',style:'text-align:center', caption: 'Password', size: '180px', resizable: true} ,
 	            { field: 'usergroup_name', caption: 'User Group', size: '150px', resizable: true,sortable:true ,
 	                render: function (record, index, column_index) {
-	                    var html = '<div style=";float:left;width:17px;height:17px;margin:0px 2px 0px 2px;line-height:20px" class="'+record.usergroup_icon+'"></div>'+ record.usergroup_name;
+	                    var html = '<div style=";float:left;width:17px;height:17px;margin:0px 2px 0px 2px;line-height:20px" class="'+record.usergroup_icon+'"></div><div class="icon-text-wrap">'+ record.usergroup_name+'</div>';
 	                    return html;
 	                }
                 }

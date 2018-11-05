@@ -75,7 +75,7 @@ class Task extends Controller {
         if(isset($_POST['record']['assigned'])){
             foreach ($_POST['record']['assigned'] as $key => $value) {
                 $arrayTaskAssigned = array(
-                    "id" => '',
+                    "id" => null,
                     "user_id" => $value['id'],
                     "task_id" => $id
                 );
@@ -88,7 +88,6 @@ class Task extends Controller {
 
     function go_edit_task()
     {
-       
         $_TASK = $this->loadModel('TaskModel');
 
         $_start_date = date('Y-m-d H:i:s',strtotime($_POST['record']['start_date']." ".$_POST['record']['start_time']));
@@ -110,14 +109,15 @@ class Task extends Controller {
         );
 
         $_TASK->updateTask($arrayTaskHeader);
-        
+
         $_TASKER = $this->loadModel('TaskerModel');
         $_TASKER->deleteTaskerByTask($id);
 
         if(isset($_POST['record']['assigned'])){
+            
             foreach ($_POST['record']['assigned'] as $key => $value) {
                 $arrayTaskAssigned = array(
-                    "id" => '',
+                    "id" => null,
                     "user_id" => $value['id'],
                     "task_id" => $id
                 );

@@ -93,6 +93,27 @@ class User extends Controller {
         die();
     }
 
+    function register()
+    {
+        $_USER = $this->loadModel('UserModel');
+
+        $array = array(
+            "id" => $this->getRN('USER'),
+            "fullname" => $_POST['record']['fullname'],
+            "nickname" => $_POST['record']['nickname'],
+            "email" => $_POST['record']['email'],
+            "phone" => '',
+            "address" => '',
+            "status" => 'Nonactive',
+            "usergroup_id" => '4',
+            "password" => $_POST['record']['password']
+        );
+
+        $_USER->addUser($array);
+
+        die();
+    }
+
     function go_edit_user()
     {
        
@@ -247,9 +268,13 @@ class User extends Controller {
         $_USER_RS = $_USER->getUserLogin($username, $password);
 
         if(count($_USER_RS) == 1){
-            echo 1;
-            Session::w('LOGIN_STATUS', '1');
             foreach ($_USER_RS as $userData) {
+                if($userData["status"] == 'Nonactive'){
+                    echo 2;
+                    die();
+                }
+                Session::w('LOGIN_STATUS', '1');
+                echo 1;
                 Session::w('USER_ID', $userData["id"]);
                 Session::w('USER_NAME', $userData["fullname"]);
                 Session::w('USER_EMAIL', $userData["email"]);

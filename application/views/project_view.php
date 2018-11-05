@@ -66,7 +66,7 @@
 	            { field: 'total_task',style:'text-align:center', caption: 'Tasks', size: '50px', resizable: true} ,
 	            { field: 'status_name', caption: 'Status', size: '100px', resizable: true,sortable:true ,
 	                render: function (record, index, column_index) {
-	                    var html = '<div style=";float:left;width:17px;height:17px;margin:0px 2px 0px 2px;line-height:20px" class="'+record.status_icon+'"></div>'+ record.status_name;
+	                    var html = '<div style=";float:left;width:17px;height:17px;margin:0px 2px 0px 2px;line-height:20px" class="'+record.status_icon+'"></div><div class="icon-text-wrap">'+ record.status_name+'</div>';
 	                    return html;
 	                }
                 }

@@ -94,6 +94,19 @@ $(function () {
                     text: ' *PHP Format',
                     attr: 'style="width: 130px"'
                 } 
+            },
+            { 
+                field: 'guest_register', 
+                type: 'list', 
+                required: true, 
+                options: { 
+                    items: [{"text":"Yes","id":"Yes"},{"text":"No","id":"No"}]
+                },
+                html: { 
+                    caption: 'Guest Register', 
+                    text: ' *Allow guest to register',
+                    attr: 'style="width: 130px"'
+                } 
             }
         ],
         record: <?php echo $_CONFIG_DATA; ?>,

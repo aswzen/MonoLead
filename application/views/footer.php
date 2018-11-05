@@ -20,6 +20,7 @@
                 { type: 'break',  id: 'break1' },
                 { type: 'button',  id: 'task', caption: 'Tasks', img: 'icon-task' },
                 <?php if(Handler::$_IS_ADMIN||Handler::$_IS_MANAGER) echo "{ type: 'button',  id: 'user', caption: 'Users', img: 'icon-group' },"; ?>
+                <?php if(Handler::$_IS_ADMIN||Handler::$_IS_MANAGER) echo "{ type: 'button',  id: 'usergroup', caption: 'User Group', img: 'icon-usergroup' },"; ?>
                 <?php if(Handler::$_IS_ADMIN||Handler::$_IS_MANAGER) echo "{ type: 'button',  id: 'config', caption: 'Configuration', img: 'icon-config' },"; ?>
                	{ type: 'spacer' },
                 { type: 'button',  id: 'user/profile',  caption: '<?php echo Handler::$_LOGIN_USER_NAME; ?>', img: 'icon-info', hint: 'User profile' },

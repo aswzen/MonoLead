@@ -5,11 +5,12 @@ CREATE TABLE `config` (
   `maintenance_mode` enum('Yes','No') DEFAULT NULL,
   `additional_footer` varchar(200) DEFAULT NULL,
   `datetime_format` varchar(50) DEFAULT NULL,
+  `guest_register` enum('Yes','No') DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Config Table';
 
 CREATE TABLE `usergroup` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `groupcode` varchar(50) DEFAULT NULL,
   `usergroup` varchar(50) DEFAULT NULL,
   `badge` varchar(50) DEFAULT NULL,

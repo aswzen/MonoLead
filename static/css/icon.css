@@ -1,6 +1,9 @@
 .icon-autogenerate{
 	background:url('icons/autogenerate.png') no-repeat center center;
 }
+.icon-usergroup{
+	background:url('icons/usergroup.png') no-repeat center center;
+}
 .icon-brand{
 	background:url('icons/brand.png') no-repeat center center;
 }
