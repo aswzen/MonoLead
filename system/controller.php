@@ -9,7 +9,7 @@ class Controller {
 
 	public function loadModel($name)
 	{
-		require(APP_DIR .'models/'. strtolower($name) .'.php');
+		require(APP_DIR .'models/'. $name .'.php');
 
 		$model = new $name;
 		return $model;
@@ -23,19 +23,19 @@ class Controller {
 	
 	public function loadPlugin($name)
 	{
-		require(APP_DIR .'plugins/'. strtolower($name) .'.php');
+		require(APP_DIR .'plugins/'. $name .'.php');
 	}
 	
 	public function loadHelper($name)
 	{
-		require(APP_DIR .'helpers/'. strtolower($name) .'.php');
+		require(APP_DIR .'helpers/'. $name .'.php');
 		$helper = new $name();
 		return $helper;
 	}
 	
 	public function helperLoader($name)
 	{
-		require(APP_DIR .'helpers/'. strtolower($name) .'.php');
+		require(APP_DIR .'helpers/'. $name .'.php');
 	}
 	
 	public function redirect($loc)
