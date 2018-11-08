@@ -74,7 +74,7 @@
 
                 $query = file_get_contents('_CREATE.sql');
                 $query.= "INSERT INTO `config` (`id`, `site_name`, `maintenance_mode`, `additional_footer`, `datetime_format`) VALUES (1, '".$_POST['site_name']."', 'No', '".$_POST['site_footer']."', '".$_POST['date_format']."');";
-                $query.= "INSERT INTO `user` (`id`, `fullname`, `nickname`, `email`, `phone`, `address`, `other`, `status`, `password`, `profile_pic_url`, `usergroup_id`) VALUES ('SR000', 'Administrator', 'Admin', '".$_POST['admin_email']."', '0', '-', '-', 'Active', '".$_POST['admin_password']."', 'images/profile_pic_url/SR000.JPG', 1);";
+                $query.= "INSERT INTO `user` (`id`, `fullname`, `nickname`, `email`, `phone`, `address`, `other`, `status`, `password`, `profile_pic_url`, `usergroup_id`) VALUES ('SR000', 'Administrator', 'Admin', '".$_POST['admin_email']."', '0', '-', '-', 'Active', '".$_POST['admin_password']."', 'images/profile_pic_url/SR000.jpg', 1);";
                 if($result = $conn->multi_query($query)){
                     echo "-- Database - Table created.</br>";
                     echo "-- Database - Config created.</br>";

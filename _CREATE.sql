@@ -71,7 +71,7 @@ CREATE TABLE `user` (
   `other` varchar(500) DEFAULT NULL,
   `status` enum('Active','Nonactive') DEFAULT NULL,
   `password` varchar(50) DEFAULT NULL,
-  `profile_pic_url` varchar(200) NOT NULL DEFAULT 'images/profile_pic_url/none.JPG',
+  `profile_pic_url` varchar(200) NOT NULL DEFAULT 'images/profile_pic_url/none.jpg',
   `usergroup_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_G` (`usergroup_id`),
