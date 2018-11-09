@@ -236,7 +236,7 @@ class User extends Controller {
         if( !empty( $_FILES['profile_pic_input'] )){
 
             $file = $_FILES['profile_pic_input'];
-            $target_dir = ROOT_DIR."static\images\profile_pic_url\\";
+            $target_dir = ROOT_DIR."static/images/profile_pic_url/";
             if (!file_exists($target_dir)) {
                 mkdir($target_dir, 0777, true);
             }
