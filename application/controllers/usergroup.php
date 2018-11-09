@@ -100,7 +100,7 @@ class UserGroup extends Controller {
     function delete_user_group()
     {
         $_USERGROUP = $this->loadModel('UserGroupModel');
-        $_USERGROUP_DATA->deleteUserGroup($_POST['id']);
+        $_USERGROUP->deleteUserGroup($_POST['id']);
 
         die();
     }
