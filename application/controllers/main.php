@@ -13,6 +13,8 @@ class Main extends Controller {
      	$_PRO = $this->loadModel('ProjectModel');
         $_PRO_DATA = $_PRO->getAllProjects();
 
+        /* anything below were about calculation for dashboard summaries */
+
         $pc = 0;
         $po = 0;
         $px = 0;
@@ -26,9 +28,13 @@ class Main extends Controller {
         	}
         }
 
+        /* Total Projects Other Status */
         $template->set('_PRO_DATA_X',$px);
+        /* Total Projects Completed */
         $template->set('_PRO_DATA_C',$pc);
+        /* Total Projects Opened */
         $template->set('_PRO_DATA_O',$po);
+        /* Total Projects Existed */
         $template->set('_PRO_DATA',count($_PRO_DATA));
 
      	$_TASK = $this->loadModel('TaskModel');
@@ -47,9 +53,13 @@ class Main extends Controller {
         	}
         }
 
+        /* Total Task Other Status */
         $template->set('_TASK_DATA_X',$tx);
+        /* Total Task Completed */
         $template->set('_TASK_DATA_C',$tc);
+        /* Total Task Opened */
         $template->set('_TASK_DATA_O',$to);
+        /* Total Task Existed */
         $template->set('_TASK_DATA',count($_TASK_DATA));
 
         $ac = 0;
@@ -65,9 +75,13 @@ class Main extends Controller {
         	}
         }
 
+        /* Total Activities Other Status */
         $template->set('_ACT_DATA_X',$ax);
+        /* Total Activities Completed */
         $template->set('_ACT_DATA_C',$ac);
+        /* Total Activities Opened */
         $template->set('_ACT_DATA_O',$ao);
+        /* Total Activities Existed */
         $template->set('_ACT_DATA_A',count($_ACT_DATA));
 
         $template->set('_ACT_DATA_OWN',$_ACT_DATA_OWN);
