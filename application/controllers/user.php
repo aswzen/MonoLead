@@ -96,6 +96,11 @@ class User extends Controller {
     function register()
     {
         $_USER = $this->loadModel('UserModel');
+        $_USER_DATA = $_USER->getUserByEmail($_POST['record']['email']);
+        if(count($_USER_DATA) >= 1){
+            echo 0;
+            die();
+        }
 
         $array = array(
             "id" => $this->getRN('USER'),

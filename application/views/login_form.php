@@ -134,10 +134,15 @@
 	                	}
 	                }
 	            },
-			    onSave: function(event) {
-			        w2popup.close();
-				    showMessage('User succesfully registered. Please contact administrator for activation','success') ;
-				    w2ui['task_grid'].reload();
+			    onSave: function(event, data) {
+			    	if(data.xhr.responseText == "0"){
+		    			w2alert('Email already taken');
+			    	} else {
+				        w2popup.close();
+					    showMessage('User succesfully registered. Please contact administrator for activation','success') ;
+					    w2ui['task_grid'].reload();
+			    	}
+
 			    }
 	        });
 	    }

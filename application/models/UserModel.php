@@ -15,6 +15,14 @@ class UserModel extends Model {
         $result = $this->notorm()->user[$id];
         return $result;
     }
+    
+    public function getUserByEmail($email = null)
+    {
+        if(empty($email)) die('Missing parameter.');
+        
+        $result = $this->notorm()->user()->where( array("email" => $email) );
+        return $result;
+    }
 
     public function getUserLogin($username = null, $password = null)
     {
