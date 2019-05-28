@@ -11,7 +11,7 @@
 	<?php } ?>
 
 <?php include('footer.php'); ?>
-<script type="text/javascript" src="<?php echo STATIC_DIR; ?>js/jquery.ajaxfileupload.js"></script>
+
 <script type="text/javascript">
 
 	$(function () {
