@@ -11,7 +11,7 @@
 	<?php } ?>
 
 <?php include('footer.php'); ?>
-
+<script type="text/javascript" src="<?php echo STATIC_DIR; ?>js/jquery.ajaxfileupload.js"></script>
 <script type="text/javascript">
 
 	$(function () {
@@ -111,19 +111,28 @@
 					    options  : {},     
 					    required : true,         
 					    html     : {      
-					    	attr	: 'style="font-size:14px;width:120px"',       
+					    	attr	: 'style="font-size:14px;width:120px"',
 					        caption : 'Badge' 
 					    } 
 					},
 	        		{ 
 					    name     : 'icon',      
-					    type     : 'text',       
-					    options  : {},     
+					    type     : 'file',       
+					    options  : {
+					    	max  	 : 1,
+						    onAdd: (event) => {
+								var name = event.file.name;
+								if(name.endsWith(".jpg") || name.endsWith(".bmp") || name.endsWith(".png") || name.endsWith(".gif") ){} else {
+									alert('File type should be jpg,bmp,png or gif');
+									event.preventDefault()
+								}
+							}
+					    },     
 					    required : true,         
 					    html     : {      
-					    	attr	: 'style="font-size:14px;width:130px"',       
-					        caption : 'Icon Class Name' 
-					    } 
+					    	attr	: 'style="font-size:14px;width:250px"',   
+					        caption : 'Icon' 
+					    },
 					},
 	            ],
 	            record: {
@@ -220,15 +229,23 @@
 					        caption : 'Badge' 
 					    } 
 					},
-	        		{ 
+					{ 
 					    name     : 'icon',      
-					    type     : 'text',       
-					    options  : {},     
-					    required : true,         
+					    type     : 'file',       
+					    options  : {
+					    	max  	 : 1,
+						    onAdd: (event) => {
+								var name = event.file.name;
+								if(name.endsWith(".jpg") || name.endsWith(".bmp") || name.endsWith(".png") || name.endsWith(".gif") ){} else {
+									alert('File type should be jpg,bmp,png or gif');
+									event.preventDefault()
+								}
+							}
+					    },         
 					    html     : {      
-					    	attr	: 'style="font-size:14px;width:130px"',       
-					        caption : 'Icon Class Name' 
-					    } 
+					    	attr	: 'style="font-size:14px;width:250px"',   
+					        caption : 'Icon: (leave it<br> blank to ignore)<br>' 
+					    },
 					},
 	            ],
 	            actions: {

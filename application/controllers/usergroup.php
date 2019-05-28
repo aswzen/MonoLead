@@ -66,12 +66,24 @@ class UserGroup extends Controller {
        
         $_USERGROUP = $this->loadModel('UserGroupModel');
 
+        $name = 'icon-developer';
+        if(isset($_POST['record']['icon'][0])){
+            $content = $_POST['record']['icon'][0]['content'];
+            $name = $_POST['record']['icon'][0]['name'];
+            $name = str_replace(' ', '_', $name);
+            $class = str_replace('.', '_', $name);
+            file_put_contents(ROOT_STATIC_DIR.'/css/icons/'.$name, base64_decode($content));
+
+            $css = "\n.icon-".$class."{background:url('icons/".$name."') no-repeat center center;}";
+            $myfile = file_put_contents(ROOT_STATIC_DIR.'/css/icon.css', $css.PHP_EOL , FILE_APPEND | LOCK_EX);
+        }
+
         $array = array(
             "id" => null,
             "groupcode" => $_POST['record']['groupcode'],
             "usergroup" => $_POST['record']['usergroup'],
             "badge" => $_POST['record']['badge'],
-            "icon" => $_POST['record']['icon']
+            "icon" => 'icon-'.$class
         );
 
         $_USERGROUP->addUserGroup($array);
@@ -84,12 +96,24 @@ class UserGroup extends Controller {
        
         $_USERGROUP = $this->loadModel('UserGroupModel');
 
+        $name = 'icon-developer';
+        if(isset($_POST['record']['icon'][0])){
+            $content = $_POST['record']['icon'][0]['content'];
+            $name = $_POST['record']['icon'][0]['name'];
+            $name = str_replace(' ', '_', $name);
+            $class = str_replace('.', '_', $name);
+            file_put_contents(ROOT_STATIC_DIR.'/css/icons/'.$name, base64_decode($content));
+
+            $css = "\n.icon-".$class."{background:url('icons/".$name."') no-repeat center center;}";
+            $myfile = file_put_contents(ROOT_STATIC_DIR.'/css/icon.css', $css.PHP_EOL , FILE_APPEND | LOCK_EX);
+        }
+
         $array = array(
             "id" => $_POST['record']['id'],
             "groupcode" => $_POST['record']['groupcode'],
             "usergroup" => $_POST['record']['usergroup'],
             "badge" => $_POST['record']['badge'],
-            "icon" => $_POST['record']['icon']
+            "icon" => 'icon-'.$class
         );
 
         $_USERGROUP->saveUserGroup($array);

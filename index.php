@@ -9,6 +9,7 @@ session_start();
 // Defines
 define('ROOT_DIR', realpath(dirname(__FILE__)) .'/');
 define('APP_DIR', ROOT_DIR .'application/');
+define('ROOT_STATIC_DIR',ROOT_DIR .'static/');
 
 // FOR INSTALLER
 $_CF_FILE = APP_DIR .'config/config.php';

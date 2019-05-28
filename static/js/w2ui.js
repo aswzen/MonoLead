@@ -10806,7 +10806,7 @@ var w2confirm = function (msg, title, callBack) {
                 case 'file':
                     defaults = {
                         selected      : [],
-                        placeholder   : w2utils.lang('Attach files by dragging and dropping or Click to Select'),
+                        placeholder   : w2utils.lang('Click to select'),
                         max           : 0,
                         maxSize       : 0,        // max size of all files, 0 - unlim
                         maxFileSize   : 0,        // max size of a single file, 0 -unlim
