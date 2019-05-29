@@ -12,7 +12,7 @@
 
         <link rel="stylesheet" href="<?php echo STATIC_DIR; ?>css/w2ui.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="<?php echo STATIC_DIR; ?>css/style.css" type="text/css" media="screen" />
-        <link rel="stylesheet" href="<?php echo STATIC_DIR; ?>css/icon.css" type="text/css" media="screen" />
+        <link rel="stylesheet" class="icons-lib" href="<?php echo STATIC_DIR; ?>css/icon.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="<?php echo STATIC_DIR; ?>css/jquery.te.css" type="text/css" media="screen" />
         <script type="text/javascript" src="<?php echo STATIC_DIR; ?>js/jquery.min.js"></script>
         <script type="text/javascript" src="<?php echo STATIC_DIR; ?>js/jquery.te.min.js"></script>

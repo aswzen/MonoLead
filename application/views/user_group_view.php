@@ -149,6 +149,10 @@
 			    onSave: function(event) {
 			        w2popup.close();
 				    showMessage('User group succesfully submitted.','success') ;
+				    var queryString = '?reload=' + new Date().getTime();
+				    $('.icons-lib').each(function () {
+				        this.href = this.href.replace(/\?.*|$/, queryString);
+				    });
 				    w2ui['user_group_grid'].reload();
 			    } 
 	        });
@@ -259,6 +263,10 @@
 			    onSave: function(event) {
 			        w2popup.close();
 				    showMessage('User group succesfully updated.','success') ;
+				    var queryString = '?reload=' + new Date().getTime();
+				    $('.icons-lib').each(function () {
+				        this.href = this.href.replace(/\?.*|$/, queryString);
+				    });
 				    w2ui['user_group_grid'].reload();
 			    } 
 	        });
